@@ -1,9 +1,7 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div>
-      <main className="min-h-screen justify-between bg-orange-200">
+      <main className="justify-between bg-orange-200">
         <div className="flex bg-orange-100 flex-wrap">
           <div className="flex-1 min-h-[50vh] flex text-center align-middle bg-cover bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.8),rgba(0,0,0,0.4)),url('/images/banner-left.jpg')] p-6 min-w-full md:min-w-0">
             <div className="m-auto">
