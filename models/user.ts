@@ -4,8 +4,7 @@ import { Schema, model, models } from "mongoose";
 export interface IUser {
   password: string;
   name: string;
-  mail: string;
-  status: "admin" | "user";
+  email: string;
   createdAt?: Date;
 }
 
@@ -13,8 +12,7 @@ export interface IUser {
 const userSchema = new Schema<IUser>({
   password: { type: String, required: true },
   name: { type: String, required: true },
-  mail: { type: String, required: true },
-  status: { type: String, required: true },
+  email: { type: String, required: true },
   createdAt: Date,
 });
 

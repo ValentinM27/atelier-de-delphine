@@ -1,7 +1,12 @@
 import { loginIsRequiredServer } from "@/lib/auth";
 
 export default async function Admin() {
-  await loginIsRequiredServer();
+  const session = await loginIsRequiredServer();
 
-  return <div>Admin Panel</div>;
+  return (
+    <div>
+      Admin Panel:
+      {session?.user?.email}
+    </div>
+  );
 }

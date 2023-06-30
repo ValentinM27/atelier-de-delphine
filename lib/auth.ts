@@ -2,6 +2,11 @@ import { NextAuthOptions, getServerSession, User } from "next-auth";
 import { redirect } from "next/navigation";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+import db from "@/lib/db";
+import user from "@/models/user";
+
+import bcrypt from "bcrypt";
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -21,7 +26,23 @@ export const authOptions: NextAuthOptions = {
         if (!credentials || !credentials.email || !credentials.password)
           return null;
 
-        return { email: "toto" } as User;
+        await db();
+
+        const dbUser = await user.findOne({ email: credentials.email }).exec();
+
+        if (!dbUser) return null;
+
+        bcrypt
+          .compare(credentials.password, dbUser.password)
+          .then((valid: boolean) => {
+            if (!valid) {
+              return null;
+            }
+          });
+
+        const { password, ...dbUserWtPwd } = dbUser.toObject();
+
+        return dbUserWtPwd as User;
       },
     }),
   ],
@@ -34,4 +55,6 @@ export async function loginIsRequiredServer() {
   const session = await getServerSession(authOptions);
 
   if (!session) return redirect("/");
+
+  return session;
 }
