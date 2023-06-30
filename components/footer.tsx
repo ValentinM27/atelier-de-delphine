@@ -1,4 +1,8 @@
-export default function Footer() {
+import { isLogged } from "@/lib/auth";
+
+export default async function Footer() {
+  const logged = await isLogged();
+
   return (
     <footer className="bg-orange-100 bottom-0">
       <div className="mx-auto text-black w-full max-w-screen-xl p-4 py-6 md:flex md:items-center md:justify-between md:p-6">
@@ -31,8 +35,11 @@ export default function Footer() {
             </a>
           </li>
           <li>
-            <a href="/signin" className=" text-orange-600 hover:underline">
-              Connexion
+            <a
+              href={logged ? "/admin" : "/signin"}
+              className=" text-orange-600 hover:underline"
+            >
+              {logged ? "Espace Administrateur" : "Connexion"}
             </a>
           </li>
         </ul>

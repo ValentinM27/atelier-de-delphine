@@ -52,9 +52,13 @@ export const authOptions: NextAuthOptions = {
 };
 
 export async function loginIsRequiredServer() {
-  const session = await getServerSession(authOptions);
+  const session = await isLogged();
 
   if (!session) return redirect("/");
 
   return session;
+}
+
+export async function isLogged() {
+  return await getServerSession(authOptions);
 }
