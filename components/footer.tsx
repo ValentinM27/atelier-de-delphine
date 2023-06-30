@@ -26,7 +26,7 @@ export default function Footer() {
             </a>
           </li>
           <li>
-            <a href="#" className=" text-orange-600 hover:underline">
+            <a href="/signin" className=" text-orange-600 hover:underline">
               Connexion
             </a>
           </li>
