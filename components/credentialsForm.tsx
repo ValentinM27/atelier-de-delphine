@@ -31,30 +31,33 @@ export function CredentialsForm(props: CredentialsFormProps) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full -mt-9 text-xl text-black font-semibold flex flex-col"
-    >
-      <input
-        type="mail"
-        name="email"
-        placeholder="Email"
-        required
-        className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Mot de passe"
-        required
-        className="w-full px-4 py-4 mb-4 border border-gray-300 rounded-md"
-      />
-      <button
-        type="submit"
-        className="< h-12 px-6 mt-4 text-lg text-white transition bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700"
+    <div className="m-1">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-lg m-auto p-5 rounded-md text-lg bg-orange-100 text-black font-semibold flex flex-col"
       >
-        Se connecter
-      </button>
-    </form>
+        <span className="ml-1">Accès administrateur</span>
+        <input
+          type="mail"
+          name="email"
+          placeholder="Email"
+          required
+          className="w-full px-2 py-2 mb-4 border border-gray-300 rounded-md"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+          required
+          className="w-full px-2 py-2 mb-4 border border-gray-300 rounded-md"
+        />
+        <button
+          type="submit"
+          className="< h-12 px-6 mt-4 text-lg transition bg-orange-200 rounded-lg focus:shadow-outline hover:bg-orange-400"
+        >
+          Se connecter
+        </button>
+      </form>
+    </div>
   );
 }
