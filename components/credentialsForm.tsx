@@ -10,9 +10,13 @@ interface CredentialsFormProps {
 
 export function CredentialsForm(props: CredentialsFormProps) {
   const router = useRouter();
+
+  const [waitForApi, setWaitForApi] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setWaitForApi(true);
+
     e.preventDefault();
     const data = new FormData(e.currentTarget);
 
@@ -28,6 +32,8 @@ export function CredentialsForm(props: CredentialsFormProps) {
       console.log("Error:", signInReponse);
       setError("Mauvais identifiants");
     }
+
+    setWaitForApi(false);
   };
 
   return (
@@ -53,7 +59,12 @@ export function CredentialsForm(props: CredentialsFormProps) {
         />
         <button
           type="submit"
-          className="< h-12 px-6 mt-4 text-lg transition bg-orange-200 rounded-lg focus:shadow-outline hover:bg-orange-400"
+          className={
+            waitForApi
+              ? "h-12 px-6 mt-4 text-lg bg-orange-200 opacity-50"
+              : "h-12 px-6 mt-4 text-lg transition bg-orange-200 rounded-lg focus:shadow-outline hover:bg-orange-400"
+          }
+          disabled={waitForApi ? true : false}
         >
           Se connecter
         </button>
