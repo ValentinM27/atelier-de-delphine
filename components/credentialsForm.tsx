@@ -16,6 +16,7 @@ export function CredentialsForm(props: CredentialsFormProps) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setWaitForApi(true);
+    setError(null);
 
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -40,15 +41,18 @@ export function CredentialsForm(props: CredentialsFormProps) {
     <div className="m-1">
       <form
         onSubmit={handleSubmit}
-        className="max-w-lg m-auto p-5 rounded-md text-lg bg-orange-100 text-black font-semibold flex flex-col"
+        className="max-w-lg m-auto p-5 rounded-md text-lg bg-orange-100 text-black flex flex-col"
       >
-        <span className="ml-1">Accès administrateur</span>
+        <span className="ml-1 font-semibold">Accès administrateur</span>
+        {error ? (
+          <div className="text-xs ml-1 text-red-500">{error}</div>
+        ) : null}
         <input
           type="mail"
           name="email"
           placeholder="Email"
           required
-          className="w-full px-2 py-2 mb-4 border border-gray-300 rounded-md"
+          className="w-full px-2 py-2 mb-4 mt-4 border border-gray-300 rounded-md"
         />
         <input
           type="password"
