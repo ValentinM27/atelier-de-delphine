@@ -36,7 +36,6 @@ export const authOptions: NextAuthOptions = {
         try {
           userSchemaValidation.parse(credentials);
         } catch (error: any) {
-          console.log(error);
           return null;
         }
 

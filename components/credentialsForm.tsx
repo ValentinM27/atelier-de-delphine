@@ -30,7 +30,6 @@ export function CredentialsForm(props: CredentialsFormProps) {
     if (signInReponse && !signInReponse.error) {
       router.push("/admin");
     } else {
-      console.log("Error:", signInReponse);
       setError("Mauvais identifiants");
     }
 
