@@ -1,5 +1,5 @@
-import { loginIsRequiredServer } from "@/lib/auth";
 import { LogoutButton } from "@/components/logoutBtn";
+import { loginIsRequiredServer } from "@/lib/auth";
 
 export default async function Admin() {
   const session = await loginIsRequiredServer();
@@ -7,10 +7,18 @@ export default async function Admin() {
   return (
     <div className="m-auto max-w-6xl text-black">
       <div className="m-1 p-2">
-        <span className="font-semibold">Page d&apos;administration</span>
-        <span className="float-right">
+        <div className="font-semibold text-xl">
+          Espace d&apos;administration
+        </div>
+        <div className="flex flex-row p-2 items-center border-b-orange-100 border-b-2 justify-between">
+          <div>
+            Connecté en tant que&nbsp;
+            <span className="font-semibold text-orange-600">
+              {session?.user?.name}
+            </span>
+          </div>
           <LogoutButton />
-        </span>
+        </div>
         {/* Liste des posts */}
       </div>
     </div>
