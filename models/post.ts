@@ -1,12 +1,13 @@
 import { Schema, model, models } from "mongoose";
+import { z } from "zod";
 
 // Interface
 export interface IPost {
   creatorId: string;
   title: string;
   description: string;
-  images: string[]; // Array of images in base64 format
-  createdAt: Date;
+  images?: string[]; // Array of images in base64 format
+  createdAt?: Date;
 }
 
 // Schema
@@ -16,6 +17,15 @@ const postSchema = new Schema<IPost>({
   description: { type: String, required: true },
   images: [String],
   createdAt: Date,
+});
+
+// Zod object
+export const postSchemaValidation = z.object({
+  creatorId: z.string(),
+  title: z.string(),
+  description: z.string(),
+  images: z.array(z.string()).optional(),
+  createdAt: z.date().optional(),
 });
 
 // Model
