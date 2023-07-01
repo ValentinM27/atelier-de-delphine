@@ -1,6 +1,9 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 
+// SessionProvider
+import { NextAuthProvider } from "./provider";
+
 // Import des composants
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
@@ -25,7 +28,9 @@ export default function RootLayout({
             <Nav />
             {children}
           </div>
-          <Footer />
+          <NextAuthProvider>
+            <Footer />
+          </NextAuthProvider>
         </div>
       </body>
     </html>

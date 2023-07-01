@@ -1,7 +1,9 @@
-import { isLogged } from "@/lib/auth";
+"use client";
 
-export default async function Footer() {
-  const logged = await isLogged();
+import { useSession } from "next-auth/react";
+
+export default function Footer() {
+  const { data: session } = useSession();
 
   return (
     <footer className="bg-orange-100 bottom-0">
@@ -26,20 +28,20 @@ export default async function Footer() {
           </li>
           <li>
             <a href="#" className="mr-4 hover:underline">
-              Politique de confidentialité
-            </a>
-          </li>
-          <li>
-            <a href="#" className="mr-4 hover:underline">
               Contact
             </a>
           </li>
           <li>
+            <a href="#" className="mr-4 hover:underline">
+              Politique de confidentialité
+            </a>
+          </li>
+          <li>
             <a
-              href={logged ? "/admin" : "/signin"}
+              href={session ? "/admin" : "/signin"}
               className=" text-orange-600 hover:underline"
             >
-              {logged ? "Espace Administrateur" : "Connexion"}
+              {session ? "Espace Administrateur" : "Connexion"}
             </a>
           </li>
         </ul>
