@@ -6,6 +6,7 @@ import db from "@/lib/db";
 import user from "@/models/user";
 
 import bcrypt from "bcrypt";
+import { z } from "zod";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -25,6 +26,19 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials || !credentials.email || !credentials.password)
           return null;
+
+        // Validation des données
+        const userSchemaValidation = z.object({
+          email: z.string().email(),
+          password: z.string(),
+        });
+
+        try {
+          userSchemaValidation.parse(credentials);
+        } catch (error: any) {
+          console.log(error);
+          return null;
+        }
 
         await db();
 
