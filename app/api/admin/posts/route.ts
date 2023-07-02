@@ -14,7 +14,7 @@ export async function GET() {
   try {
     await db();
 
-    const data = post.find().exec();
+    const data = await post.find().exec();
 
     return NextResponse.json(data);
   } catch (error: any) {

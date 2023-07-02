@@ -1,3 +1,4 @@
+import AdminDashboard from "@/components/adminDashboard";
 import { LogoutButton } from "@/components/logoutBtn";
 import { loginIsRequiredServer } from "@/lib/auth";
 
@@ -20,6 +21,7 @@ export default async function Admin() {
           <LogoutButton />
         </div>
         {/* Liste des posts */}
+        <AdminDashboard />
       </div>
     </div>
   );

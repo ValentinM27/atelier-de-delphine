@@ -3,6 +3,7 @@ import { z } from "zod";
 
 // Interface
 export interface IPost {
+  _id?: string;
   creatorId: string;
   title: string;
   description: string;
